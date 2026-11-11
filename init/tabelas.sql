@@ -1,12 +1,13 @@
+CREATE SEQUENCE IF NOT EXISTS usuario_id_seq;
+
 CREATE TABLE IF NOT EXISTS usuario (
-    id        SERIAL PRIMARY KEY,
+    id        VARCHAR(20)  PRIMARY KEY DEFAULT nextval('usuario_id_seq')::text,
     nome      VARCHAR(100) NOT NULL,
     email     VARCHAR(255) NOT NULL UNIQUE,
     senha     VARCHAR(255) NOT NULL,
     username  VARCHAR(50)  NOT NULL UNIQUE
 );
 
--- Sequência para gerar os IDs do cliente (1, 2, 3...), guardados como texto
 CREATE SEQUENCE IF NOT EXISTS cliente_id_seq;
 
 CREATE TABLE IF NOT EXISTS cliente (
@@ -18,8 +19,10 @@ CREATE TABLE IF NOT EXISTS cliente (
     email          VARCHAR(255)
 );
 
+CREATE SEQUENCE IF NOT EXISTS produto_id_seq;
+
 CREATE TABLE IF NOT EXISTS produto (
-    id              SERIAL PRIMARY KEY,
+    id              VARCHAR(20)    PRIMARY KEY DEFAULT nextval('produto_id_seq')::text,
     descricao       VARCHAR(200)   NOT NULL,
     departamento    VARCHAR(100),
     codigo_barra    CHAR(13)       UNIQUE,
